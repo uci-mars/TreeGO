@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "488730789346-7u96c6fnt8aupdob308mcno1rjp9f7rv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmm.treego",
+            "certificate_hash": "6b91cc3fbe92f5aef3b9eecec3dd065362cf47a8"
+          }
+        },
+        {
           "client_id": "488730789346-cp2lo08bbqik25ec3cskqafjeki7id9j.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488730789346-cp2lo08bbqik25ec3cskqafjeki7id9j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "488730789346-b0bfjkdr2bvbp8es1rvk4g7dhfaa8ejf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamname.treego"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
