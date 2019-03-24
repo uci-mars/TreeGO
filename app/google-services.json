@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "488730789346-in9llc5715md7cv2atgnp7fh6k0pcn4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmm.treego",
+            "certificate_hash": "6bfa2ec90e73f4e1046092a1b8880dc602e41ce3"
+          }
+        },
+        {
           "client_id": "488730789346-7u96c6fnt8aupdob308mcno1rjp9f7rv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

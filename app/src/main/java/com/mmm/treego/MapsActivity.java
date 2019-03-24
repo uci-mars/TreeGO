@@ -4,6 +4,8 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.content.res.Resources;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,7 +18,8 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final String TAG = MapsActivity.class.getSimpleName();
 
-
+    private Button current_location;
+    private LatLng botanic_gardens = new LatLng(1.3138, 103.8159);
     private GoogleMap mMap;
 
     @Override
@@ -24,30 +27,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        current_location = (Button) findViewById(R.id.button5);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-        mtextView = (TextView) findViewById(R.id.textView);
-        mRef = new Firebase("..........................LINK..............................");  // DataBase Profile Link
-        mbutton = (Button) findViewById(R.id.button);
-        mbutton.setOnClickListener(new android.view.View.OnClickListener() {
+        current_location.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(android.view.View view) {
+            public void onClick(View view) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(botanic_gardens, 16));
+            }
+        });
 
-                mRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String v = dataSnapshot.getValue(String.class);
-                        mtextView.setText(v);
-                    }
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
 
-                    }
-                });}});
+
+
+//        mtextView = (TextView) findViewById(R.id.textView);
+//        mRef = new Firebase("..........................LINK..............................");  // DataBase Profile Link
+//        mbutton = (Button) findViewById(R.id.button);
+//        mbutton.setOnClickListener(new android.view.View.OnClickListener() {
+//            @Override
+//            public void onClick(android.view.View view) {
+//
+//                mRef.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        String v = dataSnapshot.getValue(String.class);
+//                        mtextView.setText(v);
+//                    }
+//                    @Override
+//                    public void onCancelled(FirebaseError firebaseError) {
+//
+//                    }
+//                });}});
     }
 
 
@@ -79,8 +93,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // Add a marker in Sydney and move the camera
-        LatLng botanic_gardens = new LatLng(1.3138, 103.8159);
+
         mMap.addMarker(new MarkerOptions().position(botanic_gardens).title("You're at: Singapore Botanic Gardens"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(botanic_gardens, 16));
     }
+
+
 }
