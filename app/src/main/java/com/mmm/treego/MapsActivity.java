@@ -24,24 +24,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
-        mtextView = (TextView) findViewById(R.id.textView);
-        mRef = new Firebase("..........................LINK..............................");  // DataBase Profile Link
-        mbutton = (Button) findViewById(R.id.button);
-        mbutton.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = database.child("Tree\ Game");
 
-                mRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String v = dataSnapshot.getValue(String.class);
-                        mtextView.setText(v);
-                    }
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
-                    }
-                });}});
+        phoneQuery = ref.orderByChild(phoneNo);
     }
 
 
