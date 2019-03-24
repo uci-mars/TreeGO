@@ -10,8 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,15 +29,13 @@ public class ViewDatabase extends AppCompatActivity {
 
     //add Firebase Database stuff
     private FirebaseDatabase mFirebaseDatabase;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private  String userID;
 
     private ListView mListView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_database_layout);
 
@@ -46,19 +43,25 @@ public class ViewDatabase extends AppCompatActivity {
 
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be useable.
-        mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
 
-        @Override
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
             showData(dataSnapshot);
-        }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    private List<Tree> showData(DataSnapshot dataSnapshot) {
+    private void showData(DataSnapshot dataSnapshot) {
         for(DataSnapshot ds : dataSnapshot.getChildren()){
             Tree t = new Tree();
             t.setTreeID(ds.child(userID).getValue(Tree.class).getTreeID());
@@ -68,28 +71,15 @@ public class ViewDatabase extends AppCompatActivity {
             t.setDesc(ds.child(userID).getValue(Tree.class).getDesc());
 
             //display all the information
-            Log.d(TAG, "showData: TreeID: " + t.getTreeID());
-            Log.d(TAG, "showData: x: " + t.getX());
-            Log.d(TAG, "showData: y: " + t.getY());
-            Log.d(TAG, "showData: Name: " + t.getName());
-            Log.d(TAG, "showData: Desc: " + t.getDesc());
+            Log.e(TAG, "showData: TreeID: " + t.getTreeID());
+            Log.e(TAG, "showData: x: " + t.getX());
+            Log.e(TAG, "showData: y: " + t.getY());
+            Log.e(TAG, "showData: Name: " + t.getName());
+            Log.e(TAG, "showData: Desc: " + t.getDesc());
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
+//    @Override
 
     /**
      * customizable toast
