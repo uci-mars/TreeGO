@@ -8,8 +8,11 @@ import android.widget.ListView;
 
 public class QuestActivity extends Activity {
     // Array of strings...
-    String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
-            "WebOS","Ubuntu","Windows7","Max OS X"};
+    String[] mobileArray = {"Take part in a Biodiversity Guided Walk at Jurong Lake Gardens",
+            "Take part in a mangrove guided walk at Pasir Ris Park",
+            "Take part in Operation Deadline at Pulau Ubin",
+            "Take part in the Heron Watch from 26Jan to 3Feb",
+            "Volunteer for invasive species management at Central Catchment Nature Reserve"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

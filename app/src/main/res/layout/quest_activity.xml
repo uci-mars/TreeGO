@@ -3,6 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="Quests"
+        android:textAlignment="center"
+        android:textSize="24sp" />
     <ListView
         android:id="@+id/quest"
         android:layout_width="match_parent"
